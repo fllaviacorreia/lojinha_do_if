@@ -1,36 +1,223 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# API de Gerenciamento de Produtos, Clientes e Compras
+## Descrição
 
-## Getting Started
+A API de Gerenciamento de Produtos é um serviço backend para gerenciar produtos, clientes e compras incluindo funcionalidades de criação, leitura, atualização e exclusão (CRUD), este último é implementado quando necessário. 
+A API permite a integração com sistemas front-end (web e  mobile) para gerenciar dados relacionados a produtos de forma eficiente.
 
-First, run the development server:
+## Recursos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Gerenciar produtos:
+   - Criar um novo produto.
+   - Listar todos os produtos.
+   - Atualizar informações de um produto.
+   - Inativar um produto.
+- Gerenciar clientes:
+   - Criar um novo cliente.
+   - Listar todos os clientes.
+   - Atualizar informações de um cliente.
+   - Inativar um cliente.
+- Gerenciar compras:
+   - Criar uma nova compra.
+   - Listar todas as compras.
+   - Cancelar uma compra.
+- Documentação clara e organizada.
+- Validação de dados de entrada.
+
+## Pré-requisitos
+
+    Node.js: >= 14.x
+    
+    npm: >= 6.x
+    
+    Banco de Dados: MongoDB, MySQL, ou outro banco configurado (dependendo da implementação).
+    
+    Ferramentas recomendadas: Postman ou Insomnia para testar os endpoints.
+
+## Instalação
+
+### Clone o repositório:
+
+```
+git clone https://github.com/fllaviacorreia/lojinha_do_if.git
+
+cd lojinha_do_if
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Instale as dependências:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Configure o ambiente:
 
-## Learn More
+Crie um arquivo .env na raiz do projeto:
+```
+touch .env
+```
+    
+Adicione as seguintes variáveis:
 
-To learn more about Next.js, take a look at the following resources:
+ PORT=3000
+  
+Inicie o servidor:
+```
+npm start
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+## Endpoints
+Base URL
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+http://localhost:3000
 
-## Deploy on Vercel
+### Produtos
+#### 1. Listar todos os produtos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    GET /produtos
+    Resposta:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    {
+      "data": [
+        {
+          "id": "1",
+          "name": "Produto A",
+          "brand": "Brand C",
+          "price": 50.0,
+          "stock": 100
+        },
+        ...
+      ]
+    }
+
+#### 2. Buscar produto por ID
+
+    GET /produtos/:id
+    Parâmetro:
+        id: ID do produto a ser buscado.
+    Resposta:
+
+        {
+          "data": {
+            "id": "1",
+            "name": "Produto A",
+            "brand": "Brand C",
+            "price": 50.0,
+            "stock": 100
+          }
+        }
+
+#### 3. Criar um novo produto
+
+    POST /produtos
+    Body:
+
+        {
+          "name": "Produto B",
+          "brand": "Brand A",
+          "price": 70.0,
+          "stock": 50
+        }
+
+Resposta:
+
+        {
+          "message": "Produto criado com sucesso!",
+          "data": {
+            "id": "2",
+            "name": "Produto B",
+            "brand": "Brand A",
+            "price": 70.0,
+            "stock": 50
+          }
+        }
+
+#### 4. Atualizar um produto
+
+    PUT /produtos/:id
+    Parâmetro:
+        id: ID do produto a ser atualizado.
+    Body:
+
+        {
+          "price": 60.0,
+          "stock": 80
+        }
+
+Resposta:
+
+        {
+          "message": "Produto atualizado com sucesso!",
+          "data": {
+            "id": "1",
+            "name": "Produto A",
+            "brand": "Brand C",
+            "price": 60.0,
+            "stock": 80
+          }
+        }
+
+#### 5. Deletar um produto
+
+    DELETE /produtos/:id
+
+   Parâmetro:
+        id: ID do produto a ser deletado.
+
+    Resposta:
+
+        {
+          "message": "Produto deletado com sucesso!"
+        }
+
+## Estrutura do Projeto
+
+        api-produtos/
+        ├── controller/
+        │   └── product.js
+        ├── repository/
+        │   └── product.js
+        ├── service/
+        │   └── product.js
+        ├── route/
+        │   └── product.js
+        ├── server.js
+        ├── package.json
+        └── README.md
+
+## Tecnologias Utilizadas
+
+- Node.js: Plataforma backend.
+- Express.js: Framework para criação de APIs.
+- Nodemon: Framework para atualizações automáticas no servidor.
+- UUID: para gerar IDs
+
+## Melhorias Futuras
+
+- Implementação de autenticação (JWT).
+- Paginação para listagem de produtos.
+- Integração com outras APIs.
+- Validação de entrada mais robusta (ex: usando Joi ou Yup).
+
+## Contribuição
+
+Faça um fork do repositório.
+
+Crie uma branch para sua feature ou correção:
+
+      git checkout -b minha-feature
+
+Faça o commit das suas alterações:
+
+      git commit -m "Minha feature ou correção"
+
+Envie para o repositório remoto:
+
+    git push origin minha-feature
+
+Abra um Pull Request.
+
+## Licença
+
+Este projeto é licenciado sob a MIT License.
+
+Pronto! 🎉 A API está configurada e pronta para uso!
