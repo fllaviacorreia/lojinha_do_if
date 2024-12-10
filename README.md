@@ -1,8 +1,8 @@
-# API de Gerenciamento de Produtos
+# API de Gerenciamento de Produtos, Clientes e Compras
 ## Descrição
 
-A API de Gerenciamento de Produtos é um serviço backend para gerenciar produtos, incluindo funcionalidades de criação, leitura, atualização e exclusão (CRUD). 
-A API permite a integração com sistemas front-end para gerenciar dados relacionados a produtos de forma eficiente.
+A API de Gerenciamento de Produtos é um serviço backend para gerenciar produtos, clientes e compras incluindo funcionalidades de criação, leitura, atualização e exclusão (CRUD), este último é implementado quando necessário. 
+A API permite a integração com sistemas front-end (web e  mobile) para gerenciar dados relacionados a produtos de forma eficiente.
 
 ## Recursos
 
@@ -10,7 +10,16 @@ A API permite a integração com sistemas front-end para gerenciar dados relacio
    - Criar um novo produto.
    - Listar todos os produtos.
    - Atualizar informações de um produto.
-   - Remover um produto.
+   - Inativar um produto.
+- Gerenciar clientes:
+   - Criar um novo cliente.
+   - Listar todos os clientes.
+   - Atualizar informações de um cliente.
+   - Inativar um cliente.
+- Gerenciar compras:
+   - Criar uma nova compra.
+   - Listar todas as compras.
+   - Cancelar uma compra.
 - Documentação clara e organizada.
 - Validação de dados de entrada.
 
@@ -29,9 +38,9 @@ A API permite a integração com sistemas front-end para gerenciar dados relacio
 ### Clone o repositório:
 
 ```
-git clone https://github.com/fllaviacorreia/api-produtos.git
+git clone https://github.com/fllaviacorreia/lojinha_do_if.git
 
-cd api-produtos
+cd lojinha_do_if
 ```
 
 ### Instale as dependências:
