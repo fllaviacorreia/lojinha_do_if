@@ -9,7 +9,7 @@ const create = (req, res) => {
 }
 
 const changeStatus = (id) => {
-    return clientService.inactivate(id)
+    return clientService.changeStatus(id)
 }
 
 const update = (req, res) => {

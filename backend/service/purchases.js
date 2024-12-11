@@ -1,4 +1,4 @@
-const purchaseRepository = require('../repository/purchase')
+const purchaseRepository = require('../repository/purchases')
 const clientService = require('./client')
 const productService = require('./product')
 

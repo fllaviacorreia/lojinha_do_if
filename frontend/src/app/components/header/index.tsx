@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Header() {
     return (
-        <header className="flex items-center justify-center w-screen h-14 rounded-3xl fixed z-50 top-4 bg-slate-300">
+        <header className="flex items-center justify-center w-dvw h-14 rounded-3xl fixed z-50 top-4 bg-slate-300">
             <nav>
                 <ul className="flex row ">
                     

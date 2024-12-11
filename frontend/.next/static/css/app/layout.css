@@ -621,6 +621,9 @@ video {
 .bottom-0 {
   bottom: 0px;
 }
+.bottom-20 {
+  bottom: 5rem;
+}
 .bottom-4 {
   bottom: 1rem;
 }
@@ -659,9 +662,6 @@ video {
 }
 .right-2 {
   right: 0.5rem;
-}
-.right-4 {
-  right: 1rem;
 }
 .right-\[10\%\] {
   right: 10%;
@@ -714,15 +714,6 @@ video {
 .top-\[var\(--navbar-height\)\] {
   top: var(--navbar-height);
 }
-.bottom-6 {
-  bottom: 1.5rem;
-}
-.bottom-10 {
-  bottom: 2.5rem;
-}
-.bottom-20 {
-  bottom: 5rem;
-}
 .-z-30 {
   z-index: -30;
 }
@@ -747,12 +738,6 @@ video {
 .z-\[1\] {
   z-index: 1;
 }
-.-z-10 {
-  z-index: -10;
-}
-.-z-50 {
-  z-index: -50;
-}
 .order-1 {
   order: 1;
 }
@@ -770,9 +755,6 @@ video {
 }
 .m-0 {
   margin: 0px;
-}
-.m-4 {
-  margin: 1rem;
 }
 .m-10 {
   margin: 2.5rem;
@@ -840,10 +822,6 @@ video {
   margin-top: auto;
   margin-bottom: auto;
 }
-.mx-24 {
-  margin-left: 6rem;
-  margin-right: 6rem;
-}
 .-mr-2 {
   margin-right: -0.5rem;
 }
@@ -886,8 +864,8 @@ video {
 .mt-8 {
   margin-top: 2rem;
 }
-.mt-4 {
-  margin-top: 1rem;
+.mr-4 {
+  margin-right: 1rem;
 }
 .box-border {
   box-sizing: border-box;
@@ -915,9 +893,6 @@ video {
 }
 .table {
   display: table;
-}
-.table-cell {
-  display: table-cell;
 }
 .grid {
   display: grid;
@@ -1144,6 +1119,9 @@ video {
 .w-9 {
   width: 2.25rem;
 }
+.w-\[400px\] {
+  width: 400px;
+}
 .w-\[80\%\] {
   width: 80%;
 }
@@ -1180,11 +1158,11 @@ video {
 .w-screen {
   width: 100vw;
 }
-.w-\[600px\] {
-  width: 600px;
+.w-svw {
+  width: 100svw;
 }
-.w-\[400px\] {
-  width: 400px;
+.w-dvw {
+  width: 100dvw;
 }
 .min-w-10 {
   min-width: 2.5rem;
@@ -1293,12 +1271,6 @@ video {
 }
 .max-w-xs {
   max-width: 20rem;
-}
-.max-w-\[400px\] {
-  max-width: 400px;
-}
-.max-w-\[600px\] {
-  max-width: 600px;
 }
 .flex-1 {
   flex: 1 1 0%;
@@ -1603,12 +1575,6 @@ video {
 .gap-4 {
   gap: 1rem;
 }
-.gap-8 {
-  gap: 2rem;
-}
-.gap-20 {
-  gap: 5rem;
-}
 .gap-x-0 {
   column-gap: 0px;
 }
@@ -1652,6 +1618,9 @@ video {
 }
 .overflow-y-auto {
   overflow-y: auto;
+}
+.overflow-x-hidden {
+  overflow-x: hidden;
 }
 .overflow-y-hidden {
   overflow-y: hidden;
@@ -2551,6 +2520,10 @@ video {
 .text-primary\/80 {
   color: hsl(var(--nextui-primary) / 0.8);
 }
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
+}
 .text-secondary {
   --tw-text-opacity: 1;
   color: hsl(var(--nextui-secondary) / var(--nextui-secondary-opacity, var(--tw-text-opacity)));
@@ -2573,6 +2546,10 @@ video {
 }
 .text-secondary\/80 {
   color: hsl(var(--nextui-secondary) / 0.8);
+}
+.text-slate-400 {
+  --tw-text-opacity: 1;
+  color: rgb(148 163 184 / var(--tw-text-opacity, 1));
 }
 .text-success {
   --tw-text-opacity: 1;
@@ -2634,14 +2611,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
-}
-.text-slate-400 {
-  --tw-text-opacity: 1;
-  color: rgb(148 163 184 / var(--tw-text-opacity, 1));
 }
 .underline {
   text-decoration-line: underline;

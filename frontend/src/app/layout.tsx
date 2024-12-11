@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={inter.className}
+        className={`${inter.className} m-0 p-0 box-border overflow-x-hidden`}
       >
         <NextUIProvider>
           <ToastProvider>

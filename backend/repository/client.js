@@ -8,11 +8,11 @@ const getAll = () => {
 
 const getById = (id) => {
     const client = clients.find(client => client.id === id);
-    return client ? client[0] : null;
+    return client
 };
 
 const getByEmail = (email) => {
-    const client = clients.find(client => client.email === email)[0];
+    const client = clients.find(client => client.email === email);
     return client;
 };
 
@@ -33,18 +33,19 @@ const changeStatus = (id) => {
     const index = clients.findIndex(client => client.id === id);
 
     if (index !== -1) {
-        clients[index].status = 'inactive';
+        clients[index].status = clients[index].status === 'active' ? 'inactive' : 'active';
         return clients[index];
     }
 
     return null;
 };
 
-const update = (id, updates) => {
+const update = (id, name, email, bornDate) => {
     const index = clients.findIndex(client => client.id === id);
 
     if (index !== -1) {
-        clients[index] = { ...clients[index], ...updates };
+        let actual = clients[index];
+        clients[index] = { id, name, email, bornDate, status: actual.status };
         return clients[index];
     }
     

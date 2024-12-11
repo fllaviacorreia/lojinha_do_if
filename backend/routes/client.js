@@ -22,21 +22,21 @@ clientRouter.post("", (req, res) => {
 });
 
 // Rota para inativar um cliente
-clientRouter.patch("/:id/status", (req, res) => {
+clientRouter.put("/:id/status", (req, res) => {
     try {
         const { id } = req.params;
+        
         const result = clientController.changeStatus(id);
-        if (!result || result.message) {
-            return res.status(404).json({ message: "Cliente nao encontrado." });
-        }
-        return res.status(200).json({ message: "Cliente inativado com sucesso.", result });
+        console.log(result)
+         return res.status(result.status).json(result);
+
     } catch (e) {
-        return res.status(500).json({ message: "Erro ao inativar o cliente." });
+        return res.status(500).json({ message: "Erro ao atualizar o cliente." });
     }
 });
 
 // Rota para atualizar parcialmente um cliente
-clientRouter.patch("/:id", (req, res) => {
+clientRouter.put("/:id", (req, res) => {
     try {
         return clientController.update(req, res);
     } catch (e) {
