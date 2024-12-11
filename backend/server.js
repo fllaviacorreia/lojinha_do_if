@@ -16,8 +16,6 @@ app.use("/clientes", clientsRoutes)
 
 app.use("/produtos", productsRoutes)
 
-
-
 app.use("/", (req, res) =>{
     return res.send("API de Gerenciamento de Compras")
 })

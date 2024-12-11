@@ -1,0 +1,18 @@
+{
+  "name": "lojinha_do_if",
+  "version": "1.0.0",
+  "description": "A API de Gerenciamento de Produtos é um serviço backend para gerenciar produtos, clientes e compras incluindo funcionalidades de criação, leitura, atualização e exclusão (CRUD), este último é implementado quando necessário.  A API permite a integração com sistemas front-end (web e  mobile) para gerenciar dados relacionados a produtos de forma eficiente.",
+  "main": "index.js",
+  "scripts": {
+    "start:backend": "cd backend && npm install && npm start",
+    "start:frontend": "cd frontend && npm install && npm run dev",
+    "start:mobile": "cd mobile && npm install && npm start",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\" \"npm run start:mobile\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}

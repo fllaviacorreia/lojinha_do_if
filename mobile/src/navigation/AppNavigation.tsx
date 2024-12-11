@@ -13,7 +13,7 @@ export default function AppNavigation() {
 
     return (
         <NavigationContainer>
-            <Tab.Navigator>
+            <Tab.Navigator screenOptions={{ tabBarActiveTintColor: "#45defe", tabBarInactiveTintColor: "#dedede" }}>
                 <Tab.Screen name="Clientes" component={Clients}
                     options={{
                         headerTintColor: "#45defe",

@@ -1,0 +1,39 @@
+{
+  "node": {
+    "40e07b45e13041762de767a4ac77e92c7bd2f968ce": {
+      "workers": {
+        "app/clientes/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Ffllaviacorreia%2FDesenvolvimento%2Flojinha_do_if%2Ffrontend%2Fsrc%2Fapp%2Fserver%2Fclients.ts%22%2C%5B%5B%2200f355bb7124cb489521a9cf6e9deaffabf30f46d8%22%2C%22getAllClients%22%5D%2C%5B%2240e07b45e13041762de767a4ac77e92c7bd2f968ce%22%2C%22newClient%22%5D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/clientes/page": "action-browser"
+      }
+    },
+    "0010e48c9e09787f137281f5bf7a0573395e594532": {
+      "workers": {
+        "app/clientes/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Ffllaviacorreia%2FDesenvolvimento%2Flojinha_do_if%2Ffrontend%2Fsrc%2Fapp%2Fserver%2Fclients.ts%22%2C%5B%5B%2200f355bb7124cb489521a9cf6e9deaffabf30f46d8%22%2C%22getAllClients%22%5D%2C%5B%2240e07b45e13041762de767a4ac77e92c7bd2f968ce%22%2C%22newClient%22%5D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/clientes/page": "action-browser"
+      }
+    },
+    "00f355bb7124cb489521a9cf6e9deaffabf30f46d8": {
+      "workers": {
+        "app/clientes/page": {
+          "moduleId": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Ffllaviacorreia%2FDesenvolvimento%2Flojinha_do_if%2Ffrontend%2Fsrc%2Fapp%2Fserver%2Fclients.ts%22%2C%5B%5B%2200f355bb7124cb489521a9cf6e9deaffabf30f46d8%22%2C%22getAllClients%22%5D%2C%5B%2240e07b45e13041762de767a4ac77e92c7bd2f968ce%22%2C%22newClient%22%5D%5D%5D%5D&__client_imported__=true!",
+          "async": false
+        }
+      },
+      "layer": {
+        "app/clientes/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "PrqmwH/9TidU/cHU9D9kl+ry4oCPIU/jPmsz32Wa1M0="
+}
