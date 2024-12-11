@@ -14,6 +14,7 @@ export default function Home() {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [returnValue, setReturnValue] = useState('');
   const [clients, setClients] = useState([]);
+  const { addToast } = useToast();
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -45,7 +46,6 @@ export default function Home() {
   }, []);
 
 
-  const { addToast } = useToast();
 
   const handleToast = (message: string, type: ToastType) => {
     addToast(message, type);
