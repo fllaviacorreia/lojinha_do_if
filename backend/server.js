@@ -1,25 +1,32 @@
-const express = require('express')
 
-const clientsRoutes = require("./routes/client.js")
-const productsRoutes = require("./routes/product.js")
-const purchasesRoutes = require("./routes/purchases.js")
+// Importando as rotas
+import authRoutes from './routes/auth.js';
+import clientRoutes from './routes/client.js';
+import productRoutes from './routes/product.js';
+import purchaseRoutes from './routes/purchases.js';
 
-const PORT = 4000
+import express from 'express';
+import cors from 'cors';
+import pkg from 'body-parser';
+const { json } = pkg;
 
+// Inicializando o Express
 const app = express();
 
-app.use(express.json())
+app.use(json());
 
-app.use('/compras', purchasesRoutes)
+// habilitando CORS
+app.use(cors());
 
-app.use("/clientes", clientsRoutes)
 
-app.use("/produtos", productsRoutes)
+// Definição das rotas
+app.use('/auth', authRoutes);
+app.use('/clients', clientRoutes);
+app.use('/products', productRoutes);
+app.use('/purchases', purchaseRoutes);
 
-app.use("/", (req, res) =>{
-    return res.send("API de Gerenciamento de Compras")
-})
-
-app.listen(PORT, () => { 
-    console.log("Server running in port " + PORT)
-})
+// Server online
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});

@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  CLIENT
+  VENDOR
+}
+
+model User {
+  id         Int        @id @default(autoincrement())
+  name       String
+  email      String     @unique
+  password   String
+  role       Role
+
+  clients    Client[]   @relation("VendorToClients")
+  products   Product[]  @relation("VendorToProducts")
+  purchases  Purchase[] @relation("VendorToPurchases")
+}
+
+model Client {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  bornDate   DateTime?
+  status     String   @default("active")
+
+  vendor     User     @relation("VendorToClients", fields: [vendorId], references: [id])
+  vendorId   Int
+
+  purchases  Purchase[]
+}
+
+model Product {
+  id         Int                 @id @default(autoincrement())
+  name       String
+  brand      String
+  price      Decimal             @db.Decimal(10, 2)
+  stock      Int
+  status     String              @default("active")
+
+  vendor     User                @relation("VendorToProducts", fields: [vendorId], references: [id])
+  vendorId   Int
+
+  purchases  PurchaseProduct[]
+}
+
+model Purchase {
+  id          Int                  @id @default(autoincrement())
+  status      String               @default("delivered")
+  createdAt   DateTime             @default(now())
+
+  client      Client               @relation(fields: [clientId], references: [id])
+  clientId    Int
+
+  vendor      User                 @relation("VendorToPurchases", fields: [vendorId], references: [id])
+  vendorId    Int
+
+  products    PurchaseProduct[]
+}
+
+model PurchaseProduct {
+  purchase   Purchase @relation(fields: [purchaseId], references: [id])
+  purchaseId Int
+
+  product    Product  @relation(fields: [productId], references: [id])
+  productId  Int
+
+  quantity   Int
+
+  @@id([purchaseId, productId])
+}

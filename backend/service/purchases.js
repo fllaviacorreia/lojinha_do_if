@@ -1,89 +1,89 @@
-const purchaseRepository = require('../repository/purchases')
-const clientService = require('./client')
-const productService = require('./product')
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
-const getAll = () => {
-    let purchases = purchaseRepository.getAll()
-
-    const result = purchases.map(purchase => {
-        const client = clientService.getById(purchase.clientId)
-        const product = productService.getById(purchase.productId)
-        return {
-            ...purchase,
-            client,
-            product
+const getAll = async (vendorId) => {
+    return prisma.purchase.findMany({
+        where: { vendorId },
+        include: {
+            client: true,
+            products: { include: { product: true } }
         }
-    })
+    });
+};
 
-    return result
-}
-
-const create = (clientId, productId, quantity) => {
-    const client = clientService.getById(clientId)
-    const product = productService.getById(productId)
-
-    if(!client){
-        return {message: "Cliente nao encontrado."}
-    }
-
-    if(!product){
-        return {message: "Produto nao encontrado."}
-    }
-
-    if(quantity <= 0 || quantity > product.stock){
-        return {message: "Quantidade invalida."}
-    }
-
-    const totalPrice = product.price * quantity
-
-    productService.update(
-        {
-            ...product,
-            stock: product.stock - quantity
+const getById = async (id, vendorId) => {
+    return prisma.purchase.findFirst({
+        where: { id, vendorId },
+        include: {
+            client: true,
+            products: { include: { product: true } }
         }
-    )
+    });
+};
+const create = async (clientId, items, vendorId) => {
+    const purchase = await prisma.purchase.create({
+        data: {
+            clientId,
+            vendorId,
+            products: {
+                create: items.map(item => ({
+                    productId: item.productId,
+                    quantity: item.quantity
+                }))
+            },
+            status: 'delivered'
+        },
+        include: { products: true }
+    });
 
-    return purchaseRepository.create(clientId, productId, quantity, totalPrice)
-}
+    // Reduzir estoque dos produtos
+    await Promise.all(
+            purchase.products.map(async item => {
+                await prisma.product.update({
+                    where: { id: item.productId },
+                    data: {
+                        stock: {
+                            decrement: item.quantity
+                        }
+                    }
+                });
+            })
+        );
 
-const update = (id, quantity) => {
-    const purchase = purchaseRepository.getById(id)
+    return purchase;
+};
 
-    if(!purchase){
-        return {message: "Compra nao encontrada."}
+
+const changeStatus = async (id, vendorId, status = 'cancelled', returnProducts = false) => {
+    const purchase = await getById(id, vendorId);
+    if (!purchase) return null;
+
+    if (status === 'cancelled' && returnProducts) {
+        // Devolve os produtos para o estoque
+        await Promise.all(
+            purchase.products.map(async item => {
+                await prisma.product.update({
+                    where: { id: item.productId },
+                    data: {
+                        stock: {
+                            increment: item.quantity
+                        }
+                    }
+                });
+            })
+        );
     }
 
-    if(quantity <= 0 || quantity > purchase.product.stock){
-        return {message: "Quantidade invalida."}
-    }
+    return prisma.purchase.update({
+        where: { id },
+        data: { status }
+    });
+};
 
-    const totalPrice = purchase.product.price * quantity
 
-    return purchaseRepository.update(id, quantity, totalPrice)
-}
-
-const changeStatus = (id) => {
-    const purchase = purchaseRepository.getById(id)
-
-    if(!purchase){
-        return {message: "Compra nao encontrada."}
-    }
-
-    const product = productService.getById(purchase.productId)
-
-    productService.update(
-        {
-            ...product,
-            stock: product.stock + purchase.quantity
-        }
-    )
-
-    return purchaseRepository.changeStatus(id)
-}
-
-module.exports = {
+export {
     getAll,
+    getById,
     create,
-    update,
     changeStatus
-}
+};

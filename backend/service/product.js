@@ -1,35 +1,46 @@
-const productRepository = require('../repository/product');
+import { PrismaClient } from '@prisma/client';
+const prisma = new PrismaClient();
 
-const getAllProducts = () => {
-    const products = productRepository.getAllProducts();
-
-    if (!products || products.length === 0) {
-        return {message: "Nenhum produto cadastrado"};
-    }
-
-    return products;
+export const getAll = async (vendorId) => {
+    return prisma.product.findMany({
+        where: { vendorId }
+    });
 };
 
-const getOneProduct = (id) => {
-    return productRepository.getOneProduct(id);
-}
+export const getById = async (id, vendorId) => {
+    return prisma.product.findFirst({
+        where: { id, vendorId }
+    });
+};
 
-const create = (name, brand, price, stock) => {
-    return productRepository.create(name, brand, price, stock);
-}
+export const create = async (data, vendorId) => {
+    return prisma.product.create({
+        data: {
+            ...data,
+            vendorId,
+            status: 'active'
+        }
+    });
+};
 
-const update = (id, name, brand, price, stock) => {
-    return productRepository.update(id, name, brand, price, stock);
-}
+export const update = async (id, data, vendorId) => {
+    const product = await getById(id, vendorId);
+    if (!product) return null;
 
-const changeStatus = (id) => {
-    return productRepository.changeStatus(id);
-}
+    return prisma.product.update({
+        where: { id },
+        data
+    });
+};
 
-module.exports = {
-    getAllProducts,
-    getOneProduct,
-    create,
-    update,
-    changeStatus
+export const changeStatus = async (id, vendorId) => {
+    const product = await getById(id, vendorId);
+    if (!product) return null;
+
+    const newStatus = product.status === 'active' ? 'inactive' : 'active';
+
+    return prisma.product.update({
+        where: { id },
+        data: { status: newStatus }
+    });
 };
