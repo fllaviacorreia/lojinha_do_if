@@ -13,7 +13,7 @@ const login = async (email, password) => {
     });
 
     if (!user) {
-        throw new Error('User not found');
+        throw new Error('Usuário não registrado. Por favor, registre-se primeiro.');
     }
 
     const isPasswordValid = await compare(password, user.password);
@@ -28,7 +28,14 @@ const login = async (email, password) => {
         { expiresIn: '7d' }
     );
 
-    return { token, user };
+    const data = {
+        id: user.id,
+        Name: user.name,
+        email: user.email,
+        role: user.role,
+        expires: user.role === 'ADMIN' ? '30d' : '7d' // Example of different expiration based on role
+    };
+    return { token, data };
 };
 
 const register = async (name, email, password) => {
@@ -50,7 +57,14 @@ const register = async (name, email, password) => {
         { expiresIn: '7d' }
     );
 
-    return { token, user };
+    const data = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role
+    };
+
+    return { token, data};
 };
 
 const verifyToken = (token) => {

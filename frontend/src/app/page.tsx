@@ -1,15 +1,17 @@
-import Footer from "./components/footer";
-import Header from "./components/header";
+"use client";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div>
-      <Header />
-      <section className="flex pt-16 items-center justify-center flex-col w-screen h-screen">
-        <h1 className="font-semibold text-2xl text-lime-700">Lojinha do IF</h1>
-        <p>Esta é uma aplicação completa para cadastro de Clientes, Produtos e registro de Compras.</p>
-      </section>
-      <Footer />
-    </div>
+    <main>  
+      <div className="container mx-auto p-4">
+        <h1 className="text-2xl">Bem-vindo ao nosso site!</h1>
+        <p className="mt-4">Esta é a página inicial do nosso site.</p>
+        <Link href="/auth/login"> Ir para a página de login</Link>
+        <Button>This is a button</Button>
+      </div>
+
+    </main>
   );
 }
